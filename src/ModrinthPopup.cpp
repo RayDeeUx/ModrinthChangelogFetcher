@@ -5,7 +5,7 @@
 
 using namespace geode::prelude;
 
-bool ModrinthPopup::setup() {
+bool ModrinthPopup::init() {
 	if (!geode::Popup::init(330.f, 120.f, "GJ_square01.png")) return false;
 
 	this->setID("ModrinthPopup"_spr);
@@ -40,7 +40,11 @@ void ModrinthPopup::onSubmit(CCObject* sender) {
 
 	const std::string& formattedURL = fmt::format("https://api.modrinth.com/v2/project/{}/version", modIDMaybe);
 
-	req.get(formattedURL).listen([] (web::WebResponse* res) {
+	async::TaskHolder<WebResponse> listener;
+
+	listener.spawn(
+		req.get(formattedURL),
+		[] (web::WebResponse* res) {
 		if (!res->ok()) return geode::Notification::create("Request failed! (Response was not OK)", NotificationIcon::Error, 5.f)->show();
 		log::info("success?");
 
@@ -112,9 +116,6 @@ void ModrinthPopup::onSubmit(CCObject* sender) {
 			}
 		}
 		if (!foundLatestVersion) return geode::Notification::create("There is no latest changelog available.", NotificationIcon::Error, 5.f)->show();
-	}, [](auto) {
-	}, []() {
-		geode::Notification::create("Modrinth API call cancelled.", NotificationIcon::Info, 5.f)->show();
 	});
 }
 
