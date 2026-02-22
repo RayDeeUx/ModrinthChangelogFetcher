@@ -1,14 +1,14 @@
 {
-	"geode": "4.4.0",
+	"geode": "5.0.0-beta.4",
 	"gd": {
-		"win": "2.2074",
-		"mac": "2.2074",
-		"android": "2.2074",
-		"ios": "2.2074"
+		"win": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081",
+		"android": "2.2081"
 	},
 	"id": "raydeeux.modrinthchangelogfetcher",
 	"name": "ModrinthChangelogFetcher",
-	"version": "v0.0.0-alpha.0",
+	"version": "v0.0.0-alpha.1",
 	"developer": "RayDeeUx",
 	"description": "Eat my shorts.",
 	"repository": "https://github.com/RayDeeUx/ModrinthChangelogFetcher",

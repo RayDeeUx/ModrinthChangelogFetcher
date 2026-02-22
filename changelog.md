@@ -1,3 +1,3 @@
 # ModrinthChangelogFetcher Changelog
-## v0.0.0-alpha.0
+## v0.0.0-alpha.1
 - Initial release (on GitHub).
