@@ -40,15 +40,15 @@ void ModrinthPopup::onSubmit(CCObject* sender) {
 
 	const std::string& formattedURL = fmt::format("https://api.modrinth.com/v2/project/{}/version", modIDMaybe);
 
-	async::TaskHolder<WebResponse> listener;
+	async::TaskHolder<geode::utils::web::WebResponse> listener;
 
 	listener.spawn(
 		req.get(formattedURL),
-		[] (web::WebResponse* res) {
-		if (!res->ok()) return geode::Notification::create("Request failed! (Response was not OK)", NotificationIcon::Error, 5.f)->show();
+		[] (geode::utils::web::WebResponse res) {
+		if (!res.ok()) return geode::Notification::create("Request failed! (Response was not OK)", NotificationIcon::Error, 5.f)->show();
 		log::info("success?");
 
-		auto resStr = res->string();
+		auto resStr = res.string();
 		if (resStr.isErr()) return geode::Notification::create("Request failed! (Response was not a string)", NotificationIcon::Error, 5.f)->show();
 
 		const std::string& str = resStr.unwrap();
