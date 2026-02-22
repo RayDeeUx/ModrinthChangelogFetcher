@@ -1,11 +1,10 @@
 #pragma once
 
-class ModrinthPopup final : public geode::Popup<const std::string&> {
+class ModrinthPopup final : public geode::Popup {
 protected:
 	cocos2d::CCMenu* m_buttons {};
 	geode::TextInput* m_inputBx{};
-	bool setup(const std::string &) override;
-	bool setup();
+	bool init() override;
 public:
 	static ModrinthPopup* create();
 	void onSubmit(CCObject*);

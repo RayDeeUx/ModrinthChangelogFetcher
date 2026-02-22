@@ -5,11 +5,9 @@
 
 using namespace geode::prelude;
 
-bool ModrinthPopup::setup(const std::string &) {
-	return ModrinthPopup::setup();
-}
-
 bool ModrinthPopup::setup() {
+	if (!geode::Popup::init(330.f, 120.f, "GJ_square01.png")) return false;
+
 	this->setID("ModrinthPopup"_spr);
 	this->setTitle("Enter Modrinth Mod ID");
 
@@ -122,7 +120,7 @@ void ModrinthPopup::onSubmit(CCObject* sender) {
 
 ModrinthPopup* ModrinthPopup::create() {
 	auto ret = new ModrinthPopup();
-	if (ret->initAnchored(330.f, 120.f, "GJ_square01.png")) {
+	if (ret->init()) {
 		ret->autorelease();
 		return ret;
 	}
